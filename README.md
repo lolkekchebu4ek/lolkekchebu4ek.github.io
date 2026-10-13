@@ -79,3 +79,43 @@ This project is distributed under the GNU General Public License v3.0 (GPL-3). S
 
 ## Full technical report
 The README file contains the detailed technical report, timeline, and honest breakdown of the process and trade-offs.
+
+---
+
+## Final verdict
+This project works, but it is a product of iteration, not a clean process. The landing page is functional, multilingual, and visually polished enough for a demo, but the real issue is that the task was not locked down early enough: there was no clean contract at the start, and the work evolved in response to issues rather than to a clear specification. That created extra churn, more rework, and weaker confidence in the final result. In the end, the project is useful as a realistic case study because it shows both the value of iterative fixes and the cost of doing them without structure. It is not a perfect production build, but it is a real, honest example of what happens when a project improves under pressure rather than under clear planning.
+
+---
+
+## Post-mortem
+### Problem
+- The initial brief was not translated into concrete acceptance criteria.
+- There was no strict definition of what had to work at each milestone.
+- As a result, the work drifted into a sequence of fixes instead of a planned implementation.
+
+### Wrong process
+- Multiple corrections happened after the initial implementation, not before it.
+- There was no clear split between feature work, visual polish, and QA.
+- Review and control were too loose; UI/logic changes were not always validated against a checklist.
+- The project lacked a stable baseline with explicit criteria for language switching, theme behavior, and mobile navigation.
+
+### Fix
+- The project was brought to a working state with a clean baseline: RU/EN support, theme behavior, improved header stability, and basic performance improvements.
+- The code was reorganized around fewer assumptions and more repeatable logic.
+- Documentation was added so the process, decisions, and limitations are traceable.
+
+### Lesson
+- Without a clear contract, a project can look finished while still being unstable.
+- Real quality comes from defining what must work before polishing what looks good.
+- The point of iteration is not to patch endlessly — it is to improve a stable target.
+
+### Final state
+- The project is functionally solid as a case study and demo.
+- It is not a final production-grade commercial build, but it is a credible baseline for further improvement.
+- The value of the project is not only in the design but also in the honest account of how it evolved.
+
+### What should have been done first
+- Write one clear TЗ with acceptance criteria for locale behavior, theme behavior, menu, and stable header.
+- Break the task into feature-level steps: i18n, theme, menu, header stability, polish.
+- Set a QA checklist before visual refinement begins.
+- Run Lighthouse and basic browser checks before calling the project mature.

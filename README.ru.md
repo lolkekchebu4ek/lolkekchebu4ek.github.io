@@ -1,30 +1,31 @@
 # NOIR STUDIO
 
-This project is a bilingual landing page and a case study in process clarity. It was built to demonstrate how a portfolio site can evolve from a rough idea into a functioning but imperfect showcase.
+Этот проект — двуязычная версия лендинга и кейс по процессу. Он создан как рабочий пример: что уже сделано, что работает, что осталось, и почему без ясного технического задания результат получается менее предсказуемым.
 
-## Project structure
-- `index.html` — language chooser entry page
-- `ru/index.html` — Russian version of the main landing page
-- `en/index.html` — English version of the main landing page
-- `assets/` — shared styles, scripts, and JSON content
-- `docs/` — supporting documentation and case-study material
-- `experimental/` — non-production or prototype work
+## Структура проекта
+- `index.html` — страница выбора языка
+- `ru/index.html` — русская версия лендинга
+- `en/index.html` — английская версия лендинга
+- `assets/` — общие стили, скрипты и данные
+- `docs/` — вспомогательная документация и материалы кейса
+- `experimental/` — эксперименты и нео��новные варианты
 
-## Languages
-This repository now supports two visible entry points:
-- Russian: `/ru/`
-- English: `/en/`
+## Языковые версии
+В репозитории есть два основных входа:
+- Русская версия: `/ru/`
+- Английская версия: `/en/`
 
-## What is good
-- Clear bilingual entry
-- Stable language switching flow
-- Shared assets reduce duplication
-- Short path to demonstrate work to different audiences
+## Что уже сделано
+- рабочий лендинг с RU/EN переключением
+- локальные данные для контента
+- сохранение выбранного языка в локальном хранилище
+- отдельные входы для разных аудиторий
+- русский и английский варианты в одной структуре
 
-## What is not final yet
-- Some copy can still be refined for a more premium tone
-- Production-level QA should still be run on the deployed Pages URL
-- Lighthouse and browser screenshots should be added after live deployment
+## Что ещё можно улучшить
+- отшлифовать часть текста для более premium tone
+- проверить визуальную стабильность на реальном Pages URL
+- провести Lighthouse QA после деплоя
 
-## Lesson captured
-The main value of this project is not only the visual result, but the honest account of how the process drifted without a strict brief. The result is a working case study, but it is also a reminder that clear technical requirements create better outcomes.
+## Главный урок
+Главная ценность проекта — не только внешний вид, но и честный рассказ о том, как процесс без чётких требований приводит к лишней правке и размытию результата. Эта ветка показывает рабочую демонстрацию и делает процесс понятным.

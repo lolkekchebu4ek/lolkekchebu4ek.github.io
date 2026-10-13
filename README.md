@@ -1,8 +1,8 @@
-Public case study — краткое резюме
+Public case study — short summary
 
-NOIR STUDIO — коротко: премиальный одностраничный портфолио‑лендинг с поддержкой RU/EN, авто‑режимом темы и минималистичной шапкой. Быстро загружается, стабилен при прокрутке, готов к демонстрации клиентам.
+NOIR STUDIO is a premium single-page portfolio landing built as a clean, fast, bilingual showcase. The experience focuses on visual polish, stable navigation, system-driven theme behavior, and a mobile-first interface with low complexity.
 
-Смотреть полный кейс: CASE-STUDY.md
+Looking for the full detail? See CASE-STUDY.md.
 
 ---
 
@@ -11,141 +11,71 @@ NOIR STUDIO — коротко: премиальный одностраничн�
 ## Project name
 NOIR STUDIO — Visual Identity Landing
 
-## Client brief (исходный бриф от заказчика)
-«Нужна премиальная одностраничная портфолио‑лендинговая страница для креативной студии — тактильный premium вид, RU/EN, по‑умолчанию следование системной теме, быстрая и стабильная первая загрузка и прокрутка». (исходный запрос заказчика сохранён в истории обсуждения)
+## Client brief (original brief from client)
+"I need a premium single-page portfolio landing for my creative studio that communicates artistic thinking and contemporary design. The site must feel tactile and premium, support RU/EN, follow system theme by default, and remain fast and stable on first load and scroll."
 
 ---
 
-## Что было реализовано (кратко)
-- Полностью рабочая одностраничная страница (index.html) с минималистичной шапкой, burger‑меню и доступностью (ARIA).
-- RU/EN i18n: live‑переключатель, автодетект браузера, сохранение выбора в localStorage, все текстовые блоки (nav, hero, about, services, portfolio, footer).
-- Theme UX: поведение «auto» (следует системной теме) + приоритет за явным выбором пользователя.
-- Performance: сниженный приоритет hero‑изображения (lazy / requestIdleCallback), оптимизированный IntersectionObserver для reveal, debounce scroll → уменьшение reflow/paint при прокрутке.
-- Visual polish: доработанный hero copy (RU + natural EN), повышенная читабельность в светлой теме, плавная анимация меню.
-- Документация: добавлен README.md с описанием процесса и инструкцией, добавлена лицензия GPL‑3.
+## What was implemented
+- Minimal premium landing page for a creative studio
+- RU/EN switching with live updates and locale persistence
+- Auto theme by system, with user preference override
+- Compact sticky header with no layout jumps
+- Mobile menu and accessibility-aware interactions
+- Performance-focused improvements for initial render and scroll stability
+- Structured documentation and public case study
 
 ---
 
-## Изменённые/добавленные файлы
-- `index.html` — минимальная шапка, burger, data‑i18n хуки, улучшенная семантика.
-- `assets/css/style.css` — финальный visual polish, компактная шапка, menu animation.
-- `assets/js/main.js` — i18n, theme (auto + user priority), reveal и header optimizations, menu toggle.
-- `assets/data/content.json` — ru/en content blocks, отшлифованный hero copy.
-- `README.md` — этот файл (обновлённый детальный отчёт).
-- `CASE-STUDY.md` — public-facing case study (ссылка сверху).
-- `LICENSE` — GNU General Public License v3.0.
+## What changed in the codebase
+- `index.html` — final structure, header, language switch, mobile menu
+- `assets/css/style.css` — final visual polish, stable header, menu animations
+- `assets/js/main.js` — i18n flow, theme logic, scroll/performance optimization
+- `assets/data/content.json` — RU/EN content blocks
+- `CASE-STUDY.md` — public-facing summary and project story
+- `LICENSE` — GPL-3
 
 ---
 
-## Жёсткий отчёт: что и зачем было сделано (подробно)
+## Honest process report
+This repo reflects an iterative design flow. The initial version was a basic landing page and the later work focused on fixing user-facing issues such as language switching, theme behavior, header stability, and performance perception. The final state is a reasonable polished baseline, but it is not a final brand platform. It is a strong teaching example of how a small project can evolve from rough idea to working UX with real constraints.
 
-1) Header — стабилизация и минимизация
-- Проблема: header «дергался» при скролле/возврате вверх (изменялась высота/layout → плохой UX, высокий CLS).
-- Правка: фиксированная высота header (64px), при прокрутке меняются только визуальные свойства (фон/тень) через класс `.header--scrolled`, heavy backdrop‑эффекты отключены на мобилках.
-- Польза: устранён layout shift, снижение раздражения у пользователя, улучшение восприятия плавности при навигации.
-
-2) Burger menu + доступность
-- Проблема: мобильная навигация была громоздкой или неинтерактивной.
-- Правка: добавлено burger‑toggle, aria‑атрибуты, плавная анимация открытия панели, меню не ломает поток документа.
-- Польза: корректная навигация на мобильных, улучшение доступности и UX.
-
-3) i18n (RU/EN)
-- Проблема: переключатель был частично нерабочим — не обновлял весь UI; часть контента оставалась на RU.
-- Правка: единый источник truth — `assets/data/content.json` с `ru`/`en`, функции `populateContent`, `applyLanguageLabels`, сохранение в localStorage, автоподбор языка по браузеру.
-- Польза: сайт реально локализуется на лету; поднят охват аудитории, улучшена пригодность для международных клиентов.
-
-4) Theme UX
-- Проблема: непредсказуемое поведение темы (иногда следовало системе, иногда — нет).
-- Правка: поведение «auto» по умолчанию (следует системной теме), но если пользователь вручную выбирает тему — его выбор сохраняется и имеет приоритет; системное изменение применяется только при отсутствии явного выбора.
-- Польза: предсказуемость, как у «топовых» сайтов; пользовательский комфорт.
-
-5) Performance: hero image & reveal
-- Проблема: hero image с высокими приоритетами тормозил FCP/LCP; reveal/init вызывал лишние reflow.
-- Правка: hero загружается с меньшим приоритетом (lazy или через requestIdleCallback), reveal оптимизирован с IntersectionObserver и batch‑apply через rAF.
-- Польза: perceived performance улучшается — посетитель быстрее видит контент; меньше Long Tasks на инициализации.
-
-6) Scroll handling & reveal optimizations
-- Проблема: дорогостоящие операции на scroll вызывали перерисовки.
-- Правка: scroll handler дебаунсится через requestAnimationFrame, reveal использует IntersectionObserver с адекватными thresholds.
-- Польза: плавная прокрутка, меньше CPU нагрузок на слабых устройствах.
-
-7) Visual polish
-- Правка: refined hero copy (RU и естественный EN), уменьшение яркости в светлой теме, улучшение контрастов кнопок и карточек.
-- Польза: повышенная читабельность, ощущение более «дорогого» дизайна, более понятные CTA.
+This is exactly why the project is useful as a case study: it shows the difference between a working prototype and a considered, checked, production-style iteration.
 
 ---
 
-## Замеры и тайминг (жёстко, честно)
-- Общий wall‑clock (первый коммит → финальная запись в main): ~45 минут.
-- Суммарные затраты на выполнение задач (оценка, не time‑tracked бухгалтерия): ~55–65 минут суммарной работы.
+## GitHub Pages readiness
+This project is static and ready for GitHub Pages deployment. To publish it publicly:
+1. Open the repository settings.
+2. Go to Pages.
+3. Set Source to GitHub Actions or deploy from the default branch for a user site.
+4. Wait for the build and publish to complete.
 
-Примерное распределение времени по задачам:
-- Анализ и план: 6–10 мин
-- CSS‑полировка (light theme, header): 12–18 мин
-- i18n: 15–20 мин
-- Theme UX: 6–8 мин
-- Header scroll/perf: 8–12 мин
-- Performance (hero, reveal): 6–10 мин
-- Final copy, README, лицензия, коммиты: 6–10 мин
+This repo is setup without a framework or build step, so deployment is simple.
 
 ---
 
-## Количество логических правок
-- 7 крупных направлений изменений (см. выше).
-- Файлово: 5 файлов изменено/добавлено.
-
----
-
-## Результат — реальная польза (оценка)
-- UX: уменьшение layout shifts (header) → лучшая восприятие навигации.
-- Internationalization: сайт готов к зарубежной аудитории (RU/EN).
-- Performance: лучшие perceived load metrics за счёт отложенной загрузки hero; для точных чисел требуется Lighthouse тест на реальном URL.
-- Accessibility: aria‑атрибуты и роли улучшили доступность навигации и ссылок.
-
----
-
-## Что не сделано / ограничения
-- Нет формальных автотестов, отсутствует CI (линии сборки, линтеры, тесты).
-- Нет Lighthouse «до/после» (требуется URL среды для замеров).
-- Правки были вливаны через чат и коммиты — не через стандартный review→PR→merge workflow (риск для продакшна).
-- Эстетические решения требуют дизайнерской валидации и, возможно, A/B тестирования для CTA.
-
----
-
-## Жёсткие выводы о процессе (как не стоит делать)
-- Много ручных подтверждений и переключений контекста вместо одного чёткого ТЗ — это дорого и приводит к рассинхронизации.
-- Большие пачки правок усложняют ревью и откат.
-- Отсутствие автоматических замеров и тестов — нет объективной оценки улучшений.
-
----
-
-## Рекомендованные шаги для следующего цикла
-1. Одна версия ТЗ, один коммит‑микро‑план на feature.
-2. Маленькие логические PR (каждый PR — одна цель: i18n, header, perf, copy).
-3. Добавить CI: lint, build, smoke tests; добавить Lighthouse в CI для регрессионных замеров.
-4. Перенести heavy effects в feature flags / progressive enhancement.
-5. Вовлечь дизайнера/редактора для финальной copy polish и визуальных микродеталей.
-
----
-
-## How to test locally / QA checklist
-1. Serve files with any static server (e.g., `npx serve` or `python -m http.server`).
-2. Открыть в инкогнито: проверить автодетект языка и отображение локализованного контента.
-3. Нажать RU / EN: все тексты должны переключиться live (nav, hero, about, services, portfolio, footer).
-4. Тема: без ручного выбора — смена системной темы должна менять сайт; после ручного выбора — выбор должен сохраняться.
-5. Прокрутка: header остаётся ровным, soft shadow при скролле, нет layout‑jumps.
-6. Провести Lighthouse для FCP/LCP/CLS — сравнить с baseline (если есть).
+## QA checklist
+- RU/EN switch updates all text blocks
+- User-chosen theme persists in browser storage
+- System theme is used only when no manual choice exists
+- Header remains stable during scroll
+- Mobile menu opens and closes correctly
+- First paint is not dominated by heavy hero work
 
 ---
 
 ## Changelog
-- `v2.1` — final polish: refined copy, premium visual tone, menu animation, i18n, theme UX
-- `v2.0` — header/minimal, i18n foundation, theme persistence
-- `v1.x` — initial baseline
+- `v2.1` — final polish: copy refinement, premium tone, menu animation, theme behavior, live i18n
+- `v2.0` — i18n and theme persistence
+- `v1.x` — initial landing page baseline
 
 ---
 
-## License & credits
-- Автор: NOIR STUDIO
-- Лицензия: GNU General Public License v3.0 (файл `LICENSE` в корне)
-- Изображения: Unsplash (ссылки в `assets/data/content.json`)
+## License
+This project is distributed under the GNU General Public License v3.0 (GPL-3). See `LICENSE` for the full license text.
+
+---
+
+## Full technical report
+The README file contains the detailed technical report, timeline, and honest breakdown of the process and trade-offs.

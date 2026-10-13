@@ -30,13 +30,13 @@
     "site": { "brand": "NOIR STUDIO" },
     "hero": {
       "eyebrow": "Creative direction / visual identity",
-      "title": "I create <span>powerful</span><br />visual stories.",
-      "lead": "I combine artistic thinking, modern design and a digital-first approach to help brands and projects look memorable and confident.",
+      "title": "I craft <span>bold</span><br />visual stories.",
+      "lead": "I combine artistic thinking, contemporary design and a digital-first approach to craft memorable, confident brand experiences.",
       "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
     },
     "about": {
       "title": "I work where visual ideas become results.",
-      "text": "I am a visual designer and art director who helps projects look not just beautiful but persuasive. My work is shaped by form, composition, atmosphere and clear communication."
+      "text": "I’m a visual designer and art director who helps projects look not just beautiful but persuasive. My work focuses on form, composition, atmosphere, and clear communication."
     },
     "portfolio": [
       { "title": "Northline Studio", "tag": "Brand identity", "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" },
@@ -45,7 +45,7 @@
     ],
     "services": [
       { "title": "Branding", "body": "Development of visual language, logos, packaging and identity systems." },
-      { "title": "Web design", "body": "Design of websites, landing pages, user interfaces and digital communication systems." },
+      { "title": "Web design", "body": "Design of websites, landing pages, user interfaces and digital communications." },
       { "title": "Art direction", "body": "Creative concepts for advertising, content, campaigns and presentation materials." }
     ],
     "contacts": { "email": "hello@noirstudio.example", "instagram": "Instagram", "behance": "Behance", "dribbble": "Dribbble" }

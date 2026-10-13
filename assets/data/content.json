@@ -3,62 +3,128 @@
     "brand": "NOIR STUDIO"
   },
   "ru": {
-    "site": { "brand": "NOIR STUDIO" },
+    "site": {
+      "brand": "NOIR STUDIO"
+    },
+    "nav": {
+      "about": "Обо мне",
+      "portfolio": "Портфолио",
+      "services": "Услуги",
+      "contacts": "Контакты",
+      "cta": "Связаться"
+    },
     "hero": {
       "eyebrow": "Creative direction / visual identity",
       "title": "Я создаю <span>сильные</span><br />визуальные истории.",
       "lead": "Сочетаю художественное мышление, современный дизайн и цифровой подход, чтобы помогать брендам и проектам выглядеть запоминающе и уверенно.",
+      "primaryBtn": "Посмотреть работы",
+      "secondaryBtn": "Обо мне",
+      "meta": [
+        "лет в визуальном дизайне",
+        "успешных проектов",
+        "на ответ"
+      ],
       "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
     },
     "about": {
+      "eyebrow": "Обо мне",
       "title": "Я работаю там, где визуальная идея превращается в результат.",
-      "text": "Я — визуальный дизайнер и арт-режиссёр, который помогает проектам выглядеть не просто красиво, а убедительно. Моя работа строится на чувстве формы, композиции, атмосферы и ясной коммуникации."
+      "text": "Я — визуальный дизайнер и арт-режиссёр, который помогает проектам выглядеть не просто красиво, а убедительно. Моя работа строится на чувстве формы, композиции, атмосферы и ясной коммуникации.",
+      "stats": [
+        "Логотипы, визуальные системы, концепции",
+        "Сайты, лендинги, цифровые интерфейсы",
+        "Креатив для кампаний, социальных сетей и визуалов"
+      ]
     },
-    "portfolio": [
-      { "title": "Northline Studio", "tag": "Brand identity", "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" },
-      { "title": "Afterglow Journal", "tag": "Editorial design", "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" },
-      { "title": "Nova Motion", "tag": "Campaign art", "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" }
-    ],
-    "services": [
-      { "title": "Брендинг", "body": "Разработка визуального языка, логотипов, упаковки и систем идентичности." },
-      { "title": "Web design", "body": "Дизайн сайтов, лендингов, пользовательских интерфейсов и цифровых коммуникаций." },
-      { "title": "Art direction", "body": "Креативные концепции для рекламы, контента, кампаний и presentation materials." }
-    ],
+    "portfolio": {
+      "eyebrow": "Портфолио",
+      "title": "Недавние проекты",
+      "cta": "Запросить проект →"
+    },
+    "services": {
+      "eyebrow": "Услуги",
+      "title": "Поддержка на каждом этапе визуального продвижения."
+    },
     "contacts": {
+      "eyebrow": "Контакты",
+      "title": "Давайте создадим сильный визуальный образ для вашего проекта.",
       "email": "hello@noirstudio.example",
       "instagram": "Instagram",
       "behance": "Behance",
       "dribbble": "Dribbble"
-    }
+    },
+    "portfolioItems": [
+      { "title": "Northline Studio", "tag": "Brand identity", "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" },
+      { "title": "Afterglow Journal", "tag": "Editorial design", "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" },
+      { "title": "Nova Motion", "tag": "Campaign art", "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" }
+    ],
+    "servicesItems": [
+      { "title": "Брендинг", "body": "Разработка визуального языка, логотипов, упаковки и систем идентичности." },
+      { "title": "Web design", "body": "Дизайн сайтов, лендингов, пользовательских интерфейсов и цифровых коммуникаций." },
+      { "title": "Art direction", "body": "Креативные концепции для рекламы, контента, кампаний и presentation materials." }
+    ]
   },
   "en": {
-    "site": { "brand": "NOIR STUDIO" },
+    "site": {
+      "brand": "NOIR STUDIO"
+    },
+    "nav": {
+      "about": "About",
+      "portfolio": "Portfolio",
+      "services": "Services",
+      "contacts": "Contacts",
+      "cta": "Contact"
+    },
     "hero": {
       "eyebrow": "Creative direction / visual identity",
       "title": "I build <span>powerful</span><br />visual stories.",
       "lead": "I combine artistic thinking, modern design, and a digital-first approach to help brands and projects look memorable, confident, and premium.",
+      "primaryBtn": "View work",
+      "secondaryBtn": "About me",
+      "meta": [
+        "years in visual design",
+        "successful projects",
+        "on response time"
+      ],
       "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
     },
     "about": {
+      "eyebrow": "About",
       "title": "I work where a visual idea becomes a result.",
-      "text": "I am a visual designer and art director who helps projects look not only beautiful, but persuasive. My work is shaped by form, composition, atmosphere, and clear communication."
+      "text": "I am a visual designer and art director who helps projects look not only beautiful, but persuasive. My work is shaped by form, composition, atmosphere, and clear communication.",
+      "stats": [
+        "Logos, visual systems, concepts",
+        "Websites, landing pages, digital interfaces",
+        "Creative direction for campaigns, social media, and visual assets"
+      ]
     },
-    "portfolio": [
-      { "title": "Northline Studio", "tag": "Brand identity", "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" },
-      { "title": "Afterglow Journal", "tag": "Editorial design", "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" },
-      { "title": "Nova Motion", "tag": "Campaign art", "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" }
-    ],
-    "services": [
-      { "title": "Branding", "body": "Development of a visual language, logos, packaging, and identity systems." },
-      { "title": "Web design", "body": "Design of websites, landing pages, user interfaces, and digital communication systems." },
-      { "title": "Art direction", "body": "Creative concepts for advertising, content, campaigns, and presentation materials." }
-    ],
+    "portfolio": {
+      "eyebrow": "Portfolio",
+      "title": "Recent projects",
+      "cta": "Request a project →"
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "Support at every stage of visual growth."
+    },
     "contacts": {
+      "eyebrow": "Contacts",
+      "title": "Let’s shape a strong visual identity for your next project.",
       "email": "hello@noirstudio.example",
       "instagram": "Instagram",
       "behance": "Behance",
       "dribbble": "Dribbble"
-    }
+    },
+    "portfolioItems": [
+      { "title": "Northline Studio", "tag": "Brand identity", "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" },
+      { "title": "Afterglow Journal", "tag": "Editorial design", "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" },
+      { "title": "Nova Motion", "tag": "Campaign art", "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" }
+    ],
+    "servicesItems": [
+      { "title": "Branding", "body": "Development of a visual language, logos, packaging, and identity systems." },
+      { "title": "Web design", "body": "Design of websites, landing pages, user interfaces, and digital communication systems." },
+      { "title": "Art direction", "body": "Creative concepts for advertising, content, campaigns, and presentation materials." }
+    ]
   },
   "hero": {
     "eyebrow": "Creative direction / visual identity",
@@ -87,3 +153,57 @@
     "dribbble": "Dribbble"
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

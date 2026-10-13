@@ -2,70 +2,67 @@ const DATA_PATH = 'assets/data/content.json';
 const LANGUAGE_STORAGE_KEY = 'noir_lang';
 const THEME_STORAGE_KEY = 'theme';
 
-// -- Theme ---------------------------------------------------------------
+const getLocale = () => {
+  const savedLocale = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+  if (savedLocale === 'ru' || savedLocale === 'en') return savedLocale;
+  const browserLang = (navigator.language || 'en').toLowerCase();
+  return browserLang.startsWith('ru') ? 'ru' : 'en';
+};
+
 const setTheme = (theme, userInitiated = false) => {
   document.documentElement.setAttribute('data-theme', theme);
   if (userInitiated) localStorage.setItem(THEME_STORAGE_KEY, theme);
-  const btn = document.querySelector('.theme-toggle');
-  if (btn) btn.textContent = theme === 'light' ? '☾' : '☼';
+  const button = document.querySelector('.theme-toggle');
+  if (button) button.textContent = theme === 'light' ? '☾' : '☼';
 };
 
 const initTheme = () => {
-  const saved = localStorage.getItem(THEME_STORAGE_KEY);
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = saved || (prefersDark ? 'dark' : 'light');
-  setTheme(theme, !!saved);
+  const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+  setTheme(theme, !!savedTheme);
 
   const button = document.querySelector('.theme-toggle');
   if (button) {
     button.addEventListener('click', () => {
-      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      setTheme(next, true);
+      const nextTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      setTheme(nextTheme, true);
     }, { passive: true });
   }
 
-  if (!saved) {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    mq.addEventListener?.('change', (e) => setTheme(e.matches ? 'dark' : 'light'));
+  if (!savedTheme) {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    if (media.addEventListener) {
+      media.addEventListener('change', (event) => setTheme(event.matches ? 'dark' : 'light'));
+    }
   }
 };
 
-// -- i18n helpers -------------------------------------------------------
-const getPreferredLocale = () => {
-  const saved = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-  if (saved === 'ru' || saved === 'en') return saved;
-  const browser = (navigator.language || 'en-US').toLowerCase();
-  return browser.startsWith('ru') ? 'ru' : 'en';
+const getValueByPath = (obj, path) => {
+  if (!obj || !path) return undefined;
+  return path.split('.').reduce((acc, key) => (acc == null ? undefined : acc[key]), obj);
 };
 
 const applyLanguageLabels = (locale) => {
   document.documentElement.lang = locale;
-  // toggle active buttons
-  document.querySelectorAll('.lang-option').forEach((btn) => {
-    const isActive = btn.dataset.lang === locale;
-    btn.classList.toggle('active', isActive);
-    btn.setAttribute('aria-pressed', String(isActive));
+  document.querySelectorAll('.lang-option').forEach((button) => {
+    const active = button.dataset.lang === locale;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
   });
-
-  // update any static data-i18n keys that come from UI_STRINGS if present
-  // (content from content.json will be applied separately in populateContent)
 };
 
-const getLocaleContent = (rawData, locale) => {
-  if (!rawData) return {};
-  const site = rawData.site || {};
-  const localeChunk = rawData[locale] || {};
-  return {
-    site: { ...(site || {}), ...(localeChunk.site || {}) },
-    hero: { ...(site.hero || {}), ...(localeChunk.hero || {}) , ...(rawData.hero || {}) },
-    about: { ...(site.about || {}), ...(localeChunk.about || {}) , ...(rawData.about || {}) },
-    portfolio: Array.isArray(localeChunk.portfolio) ? localeChunk.portfolio : (rawData.portfolio || []),
-    services: Array.isArray(localeChunk.services) ? localeChunk.services : (rawData.services || []),
-    contacts: { ...(site.contacts || {}), ...(localeChunk.contacts || {}) , ...(rawData.contacts || {}) }
-  };
+const applyDataI18n = (data, locale) => {
+  const langData = data?.[locale] || data || {};
+  document.querySelectorAll('[data-i18n]').forEach((node) => {
+    const key = node.dataset.i18n;
+    const value = getValueByPath(langData, key);
+    if (typeof value === 'string') {
+      node.textContent = value;
+    }
+  });
 };
 
-// -- Renderers ----------------------------------------------------------
 const renderPortfolio = (items) => {
   const grid = document.getElementById('portfolio-grid');
   if (!grid) return;
@@ -92,45 +89,12 @@ const renderServices = (items) => {
   `).join('');
 };
 
-// -- Reveal / contacts (unchanged) -------------------------------------
-const observeReveal = () => {
-  const reveals = Array.from(document.querySelectorAll('.reveal'));
-  if (!reveals.length) return;
-  const footer = document.getElementById('contacts');
-  const revealsToObserve = reveals.filter((el) => !footer || !footer.contains(el));
-  const options = { threshold: 0.15, rootMargin: '0px 0px -8% 0px' };
-  const onIntersect = (entries, observer) => {
-    const toShow = [];
-    entries.forEach((entry) => { if (entry.isIntersecting) toShow.push(entry.target); });
-    if (!toShow.length) return;
-    requestAnimationFrame(() => { toShow.forEach((t) => { t.classList.add('visible'); try { observer.unobserve(t); } catch (e) {} }); });
-  };
-  const startObserving = () => {
-    const observer = new IntersectionObserver(onIntersect, options);
-    revealsToObserve.forEach((el) => observer.observe(el));
-  };
-  if ('requestIdleCallback' in window) requestIdleCallback(startObserving, { timeout: 1500 }); else setTimeout(startObserving, 600);
-};
+const setLocaleContent = (data, locale) => {
+  const langData = data?.[locale] || data || {};
 
-const optimizeContactsBlock = () => {
-  const contacts = document.getElementById('contacts');
-  if (!contacts) return;
-  if (window.matchMedia && window.matchMedia('(max-width: 720px)').matches) {
-    contacts.style.backdropFilter = 'none';
-    contacts.style.boxShadow = 'none';
-  }
-  contacts.classList.add('reveal');
-  setTimeout(() => contacts.classList.add('visible'), 220);
-  const socials = contacts.querySelectorAll('.socials a');
-  if (!socials.length) return;
-  const activateSocials = () => { socials.forEach((a) => { a.setAttribute('role','link'); a.addEventListener('click', (e) => { if (a.getAttribute('href') === '#') e.preventDefault(); }); }); };
-  if ('requestIdleCallback' in window) requestIdleCallback(activateSocials, { timeout: 2000 }); else setTimeout(activateSocials, 1200);
-};
+  const brand = document.querySelector('[data-brand]');
+  if (brand) brand.textContent = langData.site?.brand || 'NOIR STUDIO';
 
-// -- Populate content by locale ----------------------------------------
-const populateContent = (rawData, locale = getPreferredLocale()) => {
-  const data = getLocaleContent(rawData, locale);
-  const brand = document.querySelector('[data-brand]'); if (brand) brand.textContent = data.site.brand || 'NOIR STUDIO';
   const heroEyebrow = document.getElementById('hero-eyebrow');
   const heroTitle = document.getElementById('hero-title');
   const heroLead = document.getElementById('hero-lead');
@@ -139,63 +103,143 @@ const populateContent = (rawData, locale = getPreferredLocale()) => {
   const aboutText = document.getElementById('about-text');
   const emailLink = document.getElementById('contact-email');
 
-  if (heroEyebrow) heroEyebrow.textContent = data.hero.eyebrow || '';
-  if (heroTitle) heroTitle.innerHTML = data.hero.title || '';
-  if (heroLead) heroLead.textContent = data.hero.lead || '';
-  if (heroImage) {
-    if ('requestIdleCallback' in window) requestIdleCallback(() => { heroImage.src = data.hero.image; }, { timeout: 800 }); else heroImage.src = data.hero.image;
+  if (heroEyebrow) heroEyebrow.textContent = langData.hero?.eyebrow || '';
+  if (heroTitle) heroTitle.innerHTML = langData.hero?.title || '';
+  if (heroLead) heroLead.textContent = langData.hero?.lead || '';
+  if (heroImage && langData.hero?.image) {
+    heroImage.src = langData.hero.image;
   }
-  if (aboutTitle) aboutTitle.textContent = data.about.title || '';
-  if (aboutText) aboutText.textContent = data.about.text || '';
-  if (emailLink && data.contacts) { emailLink.href = `mailto:${data.contacts.email}`; emailLink.textContent = data.contacts.email || emailLink.textContent; }
+  if (aboutTitle) aboutTitle.textContent = langData.about?.title || '';
+  if (aboutText) aboutText.textContent = langData.about?.text || '';
+  if (emailLink && langData.contacts?.email) {
+    emailLink.href = `mailto:${langData.contacts.email}`;
+    emailLink.textContent = langData.contacts.email;
+  }
 
-  renderPortfolio(data.portfolio || []);
-  renderServices(data.services || []);
+  const portfolioItems = langData.portfolioItems || langData.portfolio || [];
+  const servicesItems = langData.servicesItems || langData.services || [];
+  renderPortfolio(portfolioItems);
+  renderServices(servicesItems);
+
+  applyDataI18n(data, locale);
   applyLanguageLabels(locale);
   observeReveal();
   optimizeContactsBlock();
 };
 
-// -- Language switcher init --------------------------------------------
-let currentLocale = getPreferredLocale();
-const initLanguageSwitcher = () => {
-  currentLocale = getPreferredLocale();
-  // Don't overwrite user's explicit choice
-  if (!localStorage.getItem(LANGUAGE_STORAGE_KEY)) localStorage.setItem(LANGUAGE_STORAGE_KEY, currentLocale);
+const observeReveal = () => {
+  const reveals = Array.from(document.querySelectorAll('.reveal'));
+  if (!reveals.length) return;
 
-  document.querySelectorAll('.lang-option').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const next = btn.dataset.lang;
-      if (!next) return;
-      localStorage.setItem(LANGUAGE_STORAGE_KEY, next);
-      currentLocale = next;
-      applyLanguageLabels(next);
-      if (window.__NOIR_DATA__) populateContent(window.__NOIR_DATA__, next);
+  const footer = document.getElementById('contacts');
+  const revealsToObserve = reveals.filter((el) => !footer || !footer.contains(el));
+  const options = { threshold: 0.15, rootMargin: '0px 0px -8% 0px' };
+
+  const onIntersect = (entries, observer) => {
+    const toShow = [];
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) toShow.push(entry.target);
+    });
+
+    if (!toShow.length) return;
+    requestAnimationFrame(() => {
+      toShow.forEach((target) => {
+        target.classList.add('visible');
+        try { observer.unobserve(target); } catch (error) { /* ignore */ }
+      });
+    });
+  };
+
+  const startObserving = () => {
+    const observer = new IntersectionObserver(onIntersect, options);
+    revealsToObserve.forEach((el) => observer.observe(el));
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(startObserving, { timeout: 1500 });
+  } else {
+    setTimeout(startObserving, 600);
+  }
+};
+
+const optimizeContactsBlock = () => {
+  const contacts = document.getElementById('contacts');
+  if (!contacts) return;
+
+  if (window.matchMedia && window.matchMedia('(max-width: 720px)').matches) {
+    contacts.style.backdropFilter = 'none';
+    contacts.style.boxShadow = 'none';
+  }
+
+  contacts.classList.add('reveal');
+  setTimeout(() => contacts.classList.add('visible'), 220);
+
+  const socials = contacts.querySelectorAll('.socials a');
+  if (!socials.length) return;
+
+  const activateSocials = () => {
+    socials.forEach((a) => {
+      a.setAttribute('role', 'link');
+      a.addEventListener('click', (event) => {
+        const href = a.getAttribute('href');
+        if (href === '#') event.preventDefault();
+      });
+    });
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(activateSocials, { timeout: 2000 });
+  } else {
+    setTimeout(activateSocials, 1200);
+  }
+};
+
+const initLanguageSwitcher = () => {
+  const defaultLocale = getLocale();
+  if (!localStorage.getItem(LANGUAGE_STORAGE_KEY)) {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, defaultLocale);
+  }
+
+  document.querySelectorAll('.lang-option').forEach((button) => {
+    button.addEventListener('click', () => {
+      const nextLocale = button.dataset.lang;
+      if (!nextLocale) return;
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLocale);
+      if (window.__NOIR_DATA__) {
+        setLocaleContent(window.__NOIR_DATA__, nextLocale);
+      }
     }, { passive: true });
   });
-  applyLanguageLabels(currentLocale);
 };
 
-// -- Header scroll optimization ----------------------------------------
-const onScroll = () => {
-  const hdr = document.querySelector('.site-header');
-  if (!hdr) return; hdr.classList.toggle('header--scrolled', window.scrollY > 16);
-};
-let scrollTick = false; window.addEventListener('scroll', () => { if (scrollTick) return; scrollTick = true; requestAnimationFrame(() => { onScroll(); scrollTick = false; }); }, { passive: true });
-
-// -- Menu toggle -------------------------------------------------------
 const initMenu = () => {
-  const menuToggle = document.querySelector('.menu-toggle');
+  const toggle = document.querySelector('.menu-toggle');
   const navPanel = document.getElementById('nav-panel');
-  if (!menuToggle || !navPanel) return;
-  menuToggle.addEventListener('click', () => {
-    const open = navPanel.classList.toggle('open');
-    menuToggle.classList.toggle('open', open);
-    menuToggle.setAttribute('aria-expanded', String(open));
+  if (!toggle || !navPanel) return;
+
+  toggle.addEventListener('click', () => {
+    const isOpen = navPanel.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
   }, { passive: true });
 };
 
-// -- Init --------------------------------------------------------------
+const onScroll = () => {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  header.classList.toggle('header--scrolled', window.scrollY > 16);
+};
+
+let scrollTick = false;
+window.addEventListener('scroll', () => {
+  if (scrollTick) return;
+  scrollTick = true;
+  requestAnimationFrame(() => {
+    onScroll();
+    scrollTick = false;
+  });
+}, { passive: true });
+
 const init = async () => {
   initTheme();
   initLanguageSwitcher();
@@ -205,10 +249,12 @@ const init = async () => {
     const res = await fetch(DATA_PATH + '?v=' + Date.now(), { cache: 'no-store' });
     const data = await res.json();
     window.__NOIR_DATA__ = data;
-    populateContent(data, currentLocale);
-  } catch (err) {
-    console.error('Content load error:', err);
+    const locale = getLocale();
+    setLocaleContent(data, locale);
+  } catch (error) {
+    console.error('Content load error:', error);
   }
 };
 
 document.addEventListener('DOMContentLoaded', init);
+

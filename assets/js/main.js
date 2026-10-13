@@ -75,19 +75,88 @@ const populateContent = (data) => {
   renderPortfolio(data.portfolio);
   renderServices(data.services);
   observeReveal();
+  // Make contacts block immediately interactive and light-weight
+  optimizeContactsBlock();
 };
 
+// Reveal observer optimized to avoid heavy work when many elements exist.
 const observeReveal = () => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
+  const reveals = Array.from(document.querySelectorAll('.reveal'));
+  if (!reveals.length) return;
 
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  // Skip observing elements inside #contacts — we'll reveal footer cheaply.
+  const footer = document.getElementById('contacts');
+  const revealsToObserve = reveals.filter((el) => !footer || !footer.contains(el));
+
+  const options = { threshold: 0.15, rootMargin: '0px 0px -8% 0px' };
+
+  const onIntersect = (entries, observer) => {
+    // Batch DOM writes
+    const toShow = [];
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) toShow.push(entry.target);
+    });
+    if (toShow.length) {
+      // Use requestAnimationFrame to avoid forced synchronous layouts
+      requestAnimationFrame(() => {
+        toShow.forEach((target) => {
+          target.classList.add('visible');
+          try { observer.unobserve(target); } catch (e) { /* ignore */ }
+        });
+      });
+    }
+  };
+
+  // Observe in idle time to avoid competing with page load
+  const startObserving = () => {
+    const observer = new IntersectionObserver(onIntersect, options);
+    revealsToObserve.forEach((el) => observer.observe(el));
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(startObserving, { timeout: 1500 });
+  } else {
+    // Fallback: small timeout
+    setTimeout(startObserving, 600);
+  }
+};
+
+// Contacts block-specific optimizations
+const optimizeContactsBlock = () => {
+  const contacts = document.getElementById('contacts');
+  if (!contacts) return;
+
+  // Avoid heavy CSS on small viewports
+  if (window.matchMedia && window.matchMedia('(max-width: 720px)').matches) {
+    contacts.style.backdropFilter = 'none';
+    contacts.style.boxShadow = 'none';
+  }
+
+  // Ensure footer is visible without waiting for observer
+  contacts.classList.add('reveal');
+  // Slight stagger so it doesn't paint at the same frame as other heavy resources
+  setTimeout(() => contacts.classList.add('visible'), 220);
+
+  // Defer loading of social links (non-critical) until idle
+  const socials = contacts.querySelectorAll('.socials a');
+  if (!socials.length) return;
+
+  const activateSocials = () => {
+    socials.forEach((a) => {
+      a.setAttribute('role', 'link');
+      a.addEventListener('click', (e) => {
+        // for demo anchors, prevent accidental navigation
+        const href = a.getAttribute('href');
+        if (href === '#') e.preventDefault();
+      });
+    });
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(activateSocials, { timeout: 2000 });
+  } else {
+    setTimeout(activateSocials, 1200);
+  }
 };
 
 const init = async () => {

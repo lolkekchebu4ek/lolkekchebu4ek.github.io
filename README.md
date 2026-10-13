@@ -1,3 +1,11 @@
+Public case study — краткое резюме
+
+NOIR STUDIO — коротко: премиальный одностраничный портфолио‑лендинг с поддержкой RU/EN, авто‑режимом темы и минималистичной шапкой. Быстро загружается, стабилен при прокрутке, готов к демонстрации клиентам.
+
+Смотреть полный кейс: CASE-STUDY.md
+
+---
+
 # NOIR STUDIO — Visual Identity Landing
 
 ## Project name
@@ -24,6 +32,7 @@ NOIR STUDIO — Visual Identity Landing
 - `assets/js/main.js` — i18n, theme (auto + user priority), reveal и header optimizations, menu toggle.
 - `assets/data/content.json` — ru/en content blocks, отшлифованный hero copy.
 - `README.md` — этот файл (обновлённый детальный отчёт).
+- `CASE-STUDY.md` — public-facing case study (ссылка сверху).
 - `LICENSE` — GNU General Public License v3.0.
 
 ---
@@ -31,7 +40,7 @@ NOIR STUDIO — Visual Identity Landing
 ## Жёсткий отчёт: что и зачем было сделано (подробно)
 
 1) Header — стабилизация и минимизация
-- Проблема: header «дергался» при скролле/��озврате вверх (изменялась высота/layout → плохой UX, высокий CLS).
+- Проблема: header «дергался» при скролле/возврате вверх (изменялась высота/layout → плохой UX, высокий CLS).
 - Правка: фиксированная высота header (64px), при прокрутке меняются только визуальные свойства (фон/тень) через класс `.header--scrolled`, heavy backdrop‑эффекты отключены на мобилках.
 - Польза: устранён layout shift, снижение раздражения у пользователя, улучшение восприятия плавности при навигации.
 
@@ -90,8 +99,8 @@ NOIR STUDIO — Visual Identity Landing
 ## Результат — реальная польза (оценка)
 - UX: уменьшение layout shifts (header) → лучшая восприятие навигации.
 - Internationalization: сайт готов к зарубежной аудитории (RU/EN).
-- Performance: лучшие perceived load metrics за счёт отложенной загрузки hero; для точных чисел требуется Lighthouse ��ест на реальном URL.
-- Accessibility: базовые aria‑атрибуты и роли улучшили доступность навигации и ссылок.
+- Performance: лучшие perceived load metrics за счёт отложенной загрузки hero; для точных чисел требуется Lighthouse тест на реальном URL.
+- Accessibility: aria‑атрибуты и роли улучшили доступность навигации и ссылок.
 
 ---
 
@@ -110,7 +119,7 @@ NOIR STUDIO — Visual Identity Landing
 
 ---
 
-## Рекомендации (конкретные шаги для следующего цикла)
+## Рекомендованные шаги для следующего цикла
 1. Одна версия ТЗ, один коммит‑микро‑план на feature.
 2. Маленькие логические PR (каждый PR — одна цель: i18n, header, perf, copy).
 3. Добавить CI: lint, build, smoke tests; добавить Lighthouse в CI для регрессионных замеров.
@@ -120,10 +129,10 @@ NOIR STUDIO — Visual Identity Landing
 ---
 
 ## How to test locally / QA checklist
-1. Serve files with any static server (e.g., `npx serve` или `python -m http.server`).
+1. Serve files with any static server (e.g., `npx serve` or `python -m http.server`).
 2. Открыть в инкогнито: проверить автодетект языка и отображение локализованного контента.
 3. Нажать RU / EN: все тексты должны переключиться live (nav, hero, about, services, portfolio, footer).
-4. Тема: без ручного выбора — смена системной темы должна менять сайт; после ручного выбора — выбор дол��ен сохраняться.
+4. Тема: без ручного выбора — смена системной темы должна менять сайт; после ручного выбора — выбор должен сохраняться.
 5. Прокрутка: header остаётся ровным, soft shadow при скролле, нет layout‑jumps.
 6. Провести Lighthouse для FCP/LCP/CLS — сравнить с baseline (если есть).
 
@@ -140,4 +149,3 @@ NOIR STUDIO — Visual Identity Landing
 - Автор: NOIR STUDIO
 - Лицензия: GNU General Public License v3.0 (файл `LICENSE` в корне)
 - Изображения: Unsplash (ссылки в `assets/data/content.json`)
-

@@ -24,24 +24,19 @@
       { "title": "Web design", "body": "Дизайн сайтов, лендингов, пользовательских интерфейсов и цифровых коммуникаций." },
       { "title": "Art direction", "body": "Креативные концепции для рекламы, контента, кампаний и presentation materials." }
     ],
-    "contacts": {
-      "email": "hello@noirstudio.example",
-      "instagram": "Instagram",
-      "behance": "Behance",
-      "dribbble": "Dribbble"
-    }
+    "contacts": { "email": "hello@noirstudio.example", "instagram": "Instagram", "behance": "Behance", "dribbble": "Dribbble" }
   },
   "en": {
     "site": { "brand": "NOIR STUDIO" },
     "hero": {
       "eyebrow": "Creative direction / visual identity",
-      "title": "I build <span>powerful</span><br />visual stories.",
-      "lead": "I combine artistic thinking, modern design, and a digital-first approach to help brands and projects look memorable, confident, and premium.",
+      "title": "I create <span>powerful</span><br />visual stories.",
+      "lead": "I combine artistic thinking, modern design and a digital-first approach to help brands and projects look memorable and confident.",
       "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
     },
     "about": {
-      "title": "I work where a visual idea becomes a result.",
-      "text": "I am a visual designer and art director who helps projects look not only beautiful, but persuasive. My work is shaped by form, composition, atmosphere, and clear communication."
+      "title": "I work where visual ideas become results.",
+      "text": "I am a visual designer and art director who helps projects look not just beautiful but persuasive. My work is shaped by form, composition, atmosphere and clear communication."
     },
     "portfolio": [
       { "title": "Northline Studio", "tag": "Brand identity", "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" },
@@ -49,41 +44,10 @@
       { "title": "Nova Motion", "tag": "Campaign art", "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" }
     ],
     "services": [
-      { "title": "Branding", "body": "Development of a visual language, logos, packaging, and identity systems." },
-      { "title": "Web design", "body": "Design of websites, landing pages, user interfaces, and digital communication systems." },
-      { "title": "Art direction", "body": "Creative concepts for advertising, content, campaigns, and presentation materials." }
+      { "title": "Branding", "body": "Development of visual language, logos, packaging and identity systems." },
+      { "title": "Web design", "body": "Design of websites, landing pages, user interfaces and digital communication systems." },
+      { "title": "Art direction", "body": "Creative concepts for advertising, content, campaigns and presentation materials." }
     ],
-    "contacts": {
-      "email": "hello@noirstudio.example",
-      "instagram": "Instagram",
-      "behance": "Behance",
-      "dribbble": "Dribbble"
-    }
-  },
-  "hero": {
-    "eyebrow": "Creative direction / visual identity",
-    "title": "Я создаю <span>сильные</span><br />визуальные истории.",
-    "lead": "Сочетаю художественное мышление, современный дизайн и цифровой подход, чтобы помогать брендам и проектам выглядеть запоминающе и уверенно.",
-    "image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
-  },
-  "about": {
-    "title": "Я работаю там, где визуальная идея превращается в результат.",
-    "text": "Я — визуальный дизайнер и арт-режиссёр, который помогает проектам выглядеть не просто красиво, а убедительно. Моя работа строится на чувстве формы, композиции, атмосферы и ясной коммуникации."
-  },
-  "portfolio": [
-    { "title": "Northline Studio", "tag": "Brand identity", "image": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" },
-    { "title": "Afterglow Journal", "tag": "Editorial design", "image": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" },
-    { "title": "Nova Motion", "tag": "Campaign art", "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" }
-  ],
-  "services": [
-    { "title": "Брендинг", "body": "Разработка визуального языка, логотипов, упаковки и систем идентичности." },
-    { "title": "Web design", "body": "Дизайн сайтов, лендингов, пользовательских интерфейсов и цифровых коммуникаций." },
-    { "title": "Art direction", "body": "Креативные концепции для рекламы, контента, кампаний и presentation materials." }
-  ],
-  "contacts": {
-    "email": "hello@noirstudio.example",
-    "instagram": "Instagram",
-    "behance": "Behance",
-    "dribbble": "Dribbble"
+    "contacts": { "email": "hello@noirstudio.example", "instagram": "Instagram", "behance": "Behance", "dribbble": "Dribbble" }
   }
 }

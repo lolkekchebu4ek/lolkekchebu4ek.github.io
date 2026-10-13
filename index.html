@@ -4,146 +4,116 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#090b10" />
-    <meta name="description" content="Luxury creative studio portfolio landing page." />
-    <title>NOIR STUDIO | Creative Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="preload" href="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" as="image" />
-    <link rel="stylesheet" href="assets/css/style.css?v=1.8" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23090b10'/%3E%3Cpath d='M18 44V20h8l12 1[...]
+    <meta name="description" content="NOIR STUDIO — portfolio landing in Russian and English. Choose your language." />
+    <title>NOIR STUDIO | Choose language</title>
+    <style>
+      :root {
+        --bg: #090b10;
+        --panel: #121721;
+        --panel-strong: #171d2a;
+        --text: #f4f5f7;
+        --muted: #a5adbb;
+        --border: rgba(255,255,255,0.08);
+        --accent: #d9a96d;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: Inter, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, rgba(217,169,109,0.13), transparent 35%), var(--bg);
+        color: var(--text);
+      }
+      .shell {
+        width: min(720px, calc(100vw - 32px));
+        background: rgba(18, 23, 33, 0.82);
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: clamp(24px, 4vw, 48px);
+        box-shadow: 0 28px 72px rgba(0,0,0,0.35);
+      }
+      .eyebrow {
+        margin: 0 0 14px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1.05;
+      }
+      p {
+        margin: 0 0 24px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .lang-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 180px;
+        padding: 16px 22px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: var(--panel-strong);
+        color: var(--text);
+        text-decoration: none;
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        font-weight: 700;
+      }
+      .lang-btn:hover {
+        transform: translateY(-1px);
+        border-color: rgba(217,169,109,0.4);
+      }
+      .lang-btn.primary {
+        background: linear-gradient(135deg, rgba(217,169,109,0.2), rgba(255,255,255,0.02));
+      }
+      .meta {
+        margin-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .meta span {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: rgba(255,255,255,0.015);
+      }
+    </style>
   </head>
   <body>
-    <div class="page-shell">
-      <header class="site-header">
-        <nav class="nav container">
-          <a href="#top" class="brand" aria-label="NOIR STUDIO home">
-            <span class="brand-mark">N</span>
-            <span data-brand>NOIR STUDIO</span>
-          </a>
+    <div class="shell">
+      <p class="eyebrow">NOIR STUDIO</p>
+      <h1>Choose your language</h1>
+      <p>
+        This project is presented as a bilingual case study. Choose the version you want to explore:
+        Russian for the original narrative and English for the international presentation.
+      </p>
 
-          <div class="nav-links">
-            <a href="#about" data-i18n="nav.about">Обо мне</a>
-            <a href="#portfolio" data-i18n="nav.portfolio">Портфолио</a>
-            <a href="#services" data-i18n="nav.services">Услуги</a>
-            <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
-          </div>
+      <div class="actions">
+        <a class="lang-btn primary" href="/ru/">Русская версия</a>
+        <a class="lang-btn" href="/en/">English version</a>
+      </div>
 
-          <div class="nav-right">
-            <div class="lang-switch" role="group" aria-label="Language switcher">
-              <button class="lang-option active" type="button" data-lang="ru" aria-label="Русский">RU</button>
-              <button class="lang-option" type="button" data-lang="en" aria-label="English">EN</button>
-            </div>
-            <button class="theme-toggle" type="button" aria-label="Toggle theme">☼</button>
-            <a href="#contacts" class="btn btn-primary" data-i18n="nav.cta">Связаться</a>
-          </div>
-        </nav>
-      </header>
-
-      <main id="top">
-        <section class="hero container">
-          <div class="hero-copy reveal">
-            <p class="eyebrow" id="hero-eyebrow">Creative direction / visual identity</p>
-            <h1 id="hero-title">Я создаю <span>сильные</span><br />визуальные истории.</h1>
-            <p class="lead" id="hero-lead">
-              Сочетаю художественное мышление, современный дизайн и цифровой подход,
-              чтобы помогать брендам и проектам выглядеть запоминающе и уверенно.
-            </p>
-
-            <div class="hero-actions">
-              <a href="#portfolio" class="btn btn-primary" data-i18n="hero.primaryBtn">Посмотреть работы</a>
-              <a href="#about" class="btn btn-ghost" data-i18n="hero.secondaryBtn">Обо мне</a>
-            </div>
-
-            <ul class="hero-meta" aria-label="Highlights">
-              <li><strong>8+</strong><span data-i18n="hero.meta.0">лет в визуальном дизайне</span></li>
-              <li><strong>36</strong><span data-i18n="hero.meta.1">успешных проектов</span></li>
-              <li><strong>24h</strong><span data-i18n="hero.meta.2">на ответ</span></li>
-            </ul>
-          </div>
-
-          <div class="hero-visual reveal">
-            <div class="visual-card visual-main">
-              <img
-                id="hero-image"
-                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
-                alt="Creative workspace"
-                width="900"
-                height="600"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-              />
-            </div>
-            <div class="visual-card visual-badge"><span>Brand • Art • Web</span></div>
-            <div class="visual-card visual-tag"><span>Design That Feels Alive</span></div>
-          </div>
-        </section>
-
-        <section id="about" class="about container reveal">
-          <div class="section-heading">
-            <p class="eyebrow" data-i18n="about.eyebrow">Обо мне</p>
-            <h2 id="about-title">Я работаю там, где визуальная идея превращается в результат.</h2>
-          </div>
-
-          <div class="about-grid">
-            <div class="about-card">
-              <p id="about-text">
-                Я — визуальный дизайнер и арт-режиссёр, который помогает проектам
-                выглядеть не просто красиво, а убедительно. Моя работа строится на
-                чувстве формы, композиции, атмосферы и ясной коммуникации.
-              </p>
-            </div>
-
-            <div class="about-card stats-card">
-              <div><strong>Branding</strong><span data-i18n="about.stats.0">Логотипы, визуальные системы, концепции</span></div>
-              <div><strong>Web</strong><span data-i18n="about.stats.1">Сайты, лендинги, цифровые интерфейсы</span></div>
-              <div><strong>Art direction</strong><span data-i18n="about.stats.2">Креатив для кампаний, социальных сетей и визуалов</span></div>
-            </div>
-          </div>
-        </section>
-
-        <section id="portfolio" class="portfolio container reveal">
-          <div class="section-heading inline-heading">
-            <div>
-              <p class="eyebrow" data-i18n="portfolio.eyebrow">Портфолио</p>
-              <h2 data-i18n="portfolio.title">Недавние проекты</h2>
-            </div>
-            <a href="#contacts" class="text-link" data-i18n="portfolio.cta">Запросить проект →</a>
-          </div>
-
-          <div id="portfolio-grid" class="portfolio-grid"></div>
-        </section>
-
-        <section id="services" class="services container reveal">
-          <div class="section-heading">
-            <p class="eyebrow" data-i18n="services.eyebrow">Услуги</p>
-            <h2 data-i18n="services.title">Поддержка на каждом этапе визуального продвижения.</h2>
-          </div>
-
-          <div id="services-grid" class="services-grid"></div>
-        </section>
-      </main>
-
-      <footer id="contacts" class="site-footer reveal">
-        <div class="container footer-wrap">
-          <div>
-            <p class="eyebrow" data-i18n="contacts.eyebrow">Контакты</p>
-            <h3 data-i18n="contacts.title">Давайте создадим сильный визуальный образ для вашего проекта.</h3>
-          </div>
-
-          <div class="footer-actions">
-            <a id="contact-email" href="mailto:hello@noirstudio.example" class="btn btn-primary">hello@noirstudio.example</a>
-            <div class="socials">
-              <a href="#" aria-label="Instagram">Instagram</a>
-              <a href="#" aria-label="Behance">Behance</a>
-              <a href="#" aria-label="Dribbble">Dribbble</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <div class="meta">
+        <span>Portfolio case study</span>
+        <span>Mobile-first</span>
+        <span>RU / EN</span>
+      </div>
     </div>
-
-    <script src="assets/js/main.js?v=1.4" defer></script>
   </body>
 </html>

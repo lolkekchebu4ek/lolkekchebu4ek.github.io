@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090b10" />
+    <meta name="description" content="NOIR STUDIO — English version of the project." />
+    <title>NOIR STUDIO | English version</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../assets/css/style.css?v=1.8" />
+    <script>
+      window.__NOIR_LOCALE__ = 'en';
+    </script>
+    <script src="../assets/js/main.js?v=1.5" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <nav class="nav container">
+          <a href="#top" class="brand" aria-label="NOIR STUDIO home">
+            <span class="brand-mark">N</span>
+            <span data-brand>NOIR STUDIO</span>
+          </a>
+
+          <div class="nav-links">
+            <a href="#about" data-i18n="nav.about">About</a>
+            <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+            <a href="#services" data-i18n="nav.services">Services</a>
+            <a href="#contacts" data-i18n="nav.contacts">Contacts</a>
+          </div>
+
+          <div class="nav-right">
+            <div class="lang-switch" role="group" aria-label="Language switcher">
+              <button class="lang-option" type="button" data-lang="ru" aria-label="Русский">RU</button>
+              <button class="lang-option active" type="button" data-lang="en" aria-label="English">EN</button>
+            </div>
+            <button class="theme-toggle" type="button" aria-label="Toggle theme">☼</button>
+            <a href="#contacts" class="btn btn-primary" data-i18n="nav.cta">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero container">
+          <div class="hero-copy reveal">
+            <p class="eyebrow" id="hero-eyebrow">Creative direction / visual identity</p>
+            <h1 id="hero-title">I build <span>powerful</span><br />visual stories.</h1>
+            <p class="lead" id="hero-lead">I combine artistic thinking, modern design, and a digital-first approach to help brands and projects look memorable, confident, and premium.</p>
+            <div class="hero-actions">
+              <a href="#portfolio" class="btn btn-primary" data-i18n="hero.primaryBtn">View work</a>
+              <a href="#about" class="btn btn-ghost" data-i18n="hero.secondaryBtn">About me</a>
+            </div>
+            <ul class="hero-meta" aria-label="Highlights">
+              <li><strong>8+</strong><span data-i18n="hero.meta.0">years in visual design</span></li>
+              <li><strong>36</strong><span data-i18n="hero.meta.1">successful projects</span></li>
+              <li><strong>24h</strong><span data-i18n="hero.meta.2">on response time</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="visual-card visual-main">
+              <img id="hero-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Creative workspace" width="900" height="600" loading="eager" decoding="async" fetchpriority="high" />
+            </div>
+            <div class="visual-card visual-badge"><span>Brand • Art • Web</span></div>
+            <div class="visual-card visual-tag"><span>Design That Feels Alive</span></div>
+          </div>
+        </section>
+
+        <section id="about" class="about container reveal">
+          <div class="section-heading">
+            <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+            <h2 id="about-title">I work where a visual idea becomes a result.</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-card">
+              <p id="about-text">I am a visual designer and art director who helps projects look not only beautiful, but persuasive. My work is shaped by form, composition, atmosphere, and clear communication.</p>
+            </div>
+
+            <div class="about-card stats-card">
+              <div><strong>Branding</strong><span data-i18n="about.stats.0">Logos, visual systems, concepts</span></div>
+              <div><strong>Web</strong><span data-i18n="about.stats.1">Websites, landing pages, digital interfaces</span></div>
+              <div><strong>Art direction</strong><span data-i18n="about.stats.2">Creative direction for campaigns, social media, and visual assets</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="portfolio" class="portfolio container reveal">
+          <div class="section-heading inline-heading">
+            <div>
+              <p class="eyebrow" data-i18n="portfolio.eyebrow">Portfolio</p>
+              <h2 data-i18n="portfolio.title">Recent projects</h2>
+            </div>
+            <a href="#contacts" class="text-link" data-i18n="portfolio.cta">Request a project →</a>
+          </div>
+          <div id="portfolio-grid" class="portfolio-grid"></div>
+        </section>
+
+        <section id="services" class="services container reveal">
+          <div class="section-heading">
+            <p class="eyebrow" data-i18n="services.eyebrow">Services</p>
+            <h2 data-i18n="services.title">Support at every stage of visual growth.</h2>
+          </div>
+          <div id="services-grid" class="services-grid"></div>
+        </section>
+      </main>
+
+      <footer id="contacts" class="site-footer reveal">
+        <div class="container footer-wrap">
+          <div>
+            <p class="eyebrow" data-i18n="contacts.eyebrow">Contacts</p>
+            <h3 data-i18n="contacts.title">Let’s shape a strong visual identity for your next project.</h3>
+          </div>
+          <div class="footer-actions">
+            <a id="contact-email" href="mailto:hello@noirstudio.example" class="btn btn-primary">hello@noirstudio.example</a>
+            <div class="socials">
+              <a href="#" aria-label="Instagram">Instagram</a>
+              <a href="#" aria-label="Behance">Behance</a>
+              <a href="#" aria-label="Dribbble">Dribbble</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -3,8 +3,14 @@ const LANGUAGE_STORAGE_KEY = 'noir_lang';
 const THEME_STORAGE_KEY = 'theme';
 
 const getLocale = () => {
+  const forcedLocale = window.__NOIR_LOCALE__;
+  if (forcedLocale === 'ru' || forcedLocale === 'en') {
+    return forcedLocale;
+  }
+
   const savedLocale = localStorage.getItem(LANGUAGE_STORAGE_KEY);
   if (savedLocale === 'ru' || savedLocale === 'en') return savedLocale;
+
   const browserLang = (navigator.language || 'en').toLowerCase();
   return browserLang.startsWith('ru') ? 'ru' : 'en';
 };
@@ -106,9 +112,7 @@ const setLocaleContent = (data, locale) => {
   if (heroEyebrow) heroEyebrow.textContent = langData.hero?.eyebrow || '';
   if (heroTitle) heroTitle.innerHTML = langData.hero?.title || '';
   if (heroLead) heroLead.textContent = langData.hero?.lead || '';
-  if (heroImage && langData.hero?.image) {
-    heroImage.src = langData.hero.image;
-  }
+  if (heroImage && langData.hero?.image) heroImage.src = langData.hero.image;
   if (aboutTitle) aboutTitle.textContent = langData.about?.title || '';
   if (aboutText) aboutText.textContent = langData.about?.text || '';
   if (emailLink && langData.contacts?.email) {
@@ -249,12 +253,10 @@ const init = async () => {
     const res = await fetch(DATA_PATH + '?v=' + Date.now(), { cache: 'no-store' });
     const data = await res.json();
     window.__NOIR_DATA__ = data;
-    const locale = getLocale();
-    setLocaleContent(data, locale);
+    setLocaleContent(data, getLocale());
   } catch (error) {
     console.error('Content load error:', error);
   }
 };
 
 document.addEventListener('DOMContentLoaded', init);
-
